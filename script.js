@@ -2,9 +2,9 @@
 	const toggle = document.getElementById("toggle-btn");
 	const formIntoView = document.querySelector('#hiddenForm input[type="email"]');
 	const submitBtn = document.getElementById('submit');
-
-	const formMessage = document.querySelector('#message');
 	const charCount = document.querySelector('#char-count');
+	const formMessage = document.querySelector('#message'); //For real time-interactivity (See below)
+	
 
 toggle.addEventListener("click", function() {
 
@@ -27,18 +27,18 @@ document.querySelector('#hiddenForm').addEventListener('submit', function (e) {
 });
 
 //Real-time interactivity
-
+	//Resize textarea
 formMessage.addEventListener('input', () => {
-  formMessage.style.height = 'auto'; // Reset the height
-  formMessage.style.height = `${formMessage.scrollHeight}px`; // Adjust to content
+  formMessage.style.height = 'auto';
+  formMessage.style.height = `${formMessage.scrollHeight}px`; 
 });
-
+	//Char count
 formMessage.addEventListener('input', () => {
   const maxLength = formMessage.getAttribute('maxlength');
   const currentLength = formMessage.value.length;
   charCount.textContent = `Characters left: ${maxLength - currentLength}`;
 });
-
+	//Min char count
 formMessage.addEventListener('input', () => {
   if (formMessage.value.trim().length < 10) {
     formMessage.style.borderColor = 'red';
@@ -48,7 +48,7 @@ formMessage.addEventListener('input', () => {
     formMessage.setCustomValidity('');
   }
 });
-
+	//Email regex validation
 const emailInput = document.getElementById('email'); 
 const emailError = document.getElementById('email-error');
 
@@ -61,63 +61,41 @@ emailInput.addEventListener('input', () => {
     emailError.style.display = 'none';
   }
 });
-
-//Prevent submission if the email is invalid
+	//Email not submitted If is invalid
 document.querySelector('#hiddenForm').addEventListener('submit', (event) => {
   if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
-    event.preventDefault(); // Stop form submission
-    emailError.style.display = 'inline'; // Ensure error message is visible
-  }
+    event.preventDefault(); 
+    emailError.style.display = 'inline'; 
+}});
+
+
+//Form handler
+const status = document.getElementById('my-form-status');
+const messageInput = document.getElementById('message');
+
+form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+            if (response.ok) {
+                status.textContent = 'Thank you for your submission!';
+                status.style.color = 'green';
+                form.reset(); 
+                charCount.textContent = 'Characters left: 200';
+            } else {
+                const errorData = await response.json();
+                status.textContent = errorData.message || 'Oops! There was a problem submitting the form.';
+                status.style.color = 'red';
+            }
+        } catch (error) {
+            status.textContent = 'There was an error submitting the form.';
+            status.style.color = 'red';
+        }
 });
-
-// Select the form and status element
-var formElement = document.getElementById("hiddenForm");
-
-async function handleSubmit(event) {
-  event.preventDefault(); // Prevent default form submission behavior
-
-  var status = document.getElementById("my-form-status"); // Status message container
-  var data = new FormData(event.target); // Gather form data
-
-  // Send form data to Formspree
-  fetch(event.target.action, {
-    method: formElement.method, // Use form's method (POST)
-    body: data,          // Form data
-    headers: {
-      'Accept': 'application/json' // Request JSON response
-    }
-  })
-    .then(response => {
-      if (response.ok) {
-        status.innerHTML = "Thanks for your submission!";
-        status.style.color = "green"; // Success message styling
-        formElement.reset(); // Reset the form after success
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            // Display errors from Formspree
-            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
-          } else {
-            status.innerHTML = "Oops! There was a problem submitting your form.";
-          }
-          status.style.color = "red"; // Error message styling
-        });
-      }
-    })
-    .catch(error => {
-      // Catch network or other errors
-      status.innerHTML = "Oops! There was a problem submitting your form.";
-      status.style.color = "red"; // Error message styling
-    });
-}
-
-// Attach the submit event listener to the form
-formElement.addEventListener("submit", handleSubmit);
-
-
-
-
-
-
-
-	
