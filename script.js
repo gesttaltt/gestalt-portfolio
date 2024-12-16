@@ -53,8 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Validate Inputs
         if (!validateEmail() || !validateMessage()) return;
-
+        
         const formData = new FormData(form);
+        formData.append('_formspree_key', 'n42mbvh');
         try {
             const response = await fetch('https://formspree.io/f/mrbgwgod', {
                 method: 'POST',
