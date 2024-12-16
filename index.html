@@ -134,22 +134,23 @@
 					<a id="toggle-btn" class="contact-btn">
 						<img src="assets/images/envelope.svg">
 					</a>
+
+					<form id="hiddenForm" class="form" action="https://formspree.io/f/mrbgwgod" method="POST">
+						<label for="email">Email</label>
+						<input type="email" name="email" id="email" required>
+						<span id="email-error" style="display: none;">Enter a valid email address.</span>
+			
+						<label for="message">Your comment</label>
+						<textarea name="message" id="message" maxlength="200" required></textarea>
+						<p id="char-count">Characters left: 200</p>
+						<p id="my-form-status"></p>
+						<div id="btn-grid">
+							<button id="submit" type="Submit">Submit</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</section>
-		<form id="hiddenForm" class="form" action="https://formspree.io/f/mrbgwgod" method="POST">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email" required>
-			<span id="email-error" style="display: none;">Enter a valid email address.</span>
-
-			<label for="message">Your comment</label>
-			<textarea name="message" id="message" maxlength="200" required></textarea>
-			<p id="char-count">Characters left: 200</p>
-			<p id="my-form-status"></p>
-			<div id="btn-grid">
-				<button id="submit" type="Submit">Submit</button>
-			</div>
-		</form>
 	</main>
 
 	<footer class="footer">
