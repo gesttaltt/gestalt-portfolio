@@ -6,47 +6,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const messageInput = document.getElementById('message');
     const charCount = document.getElementById('char-count');
     const status = document.getElementById('my-form-status');
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Added email validation regex as a const variable
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Show/Hide Form
-    toggle.addEventListener('click', () => {
-        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'grid' : 'none';
-        toggle.style.display = form.style.display === 'none' ? 'block' : 'none';
-    });
+    // Toggle Form Visibility
+    const toggleFormVisibility = () => {
+        const isHidden = form.style.display === 'none' || form.style.display === '';
+        form.style.display = isHidden ? 'grid' : 'none';
+        toggle.style.display = isHidden ? 'none' : 'block';
+    };
+    toggle.addEventListener('click', toggleFormVisibility);
 
-    // Real-time Character Count
-    messageInput.addEventListener('input', () => {
+    // Update Character Count in Textarea
+    const updateCharCount = () => {
         const maxLength = messageInput.getAttribute('maxlength');
         charCount.textContent = `Characters left: ${maxLength - messageInput.value.length}`;
-    });
+    };
+    messageInput.addEventListener('input', updateCharCount);
 
-    // Form Submit Handler
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Prevent default form submission
-
-        // Email Validation
+    // Form Validation
+    const validateEmail = () => {
         if (!emailRegex.test(emailInput.value.trim())) {
             emailError.style.display = 'inline';
             emailError.textContent = 'Enter a valid email address.';
-            return;
-        } else {
-            emailError.style.display = 'none';
+            return false;
         }
+        emailError.style.display = 'none';
+        return true;
+    };
 
-        // Message Validation
-        if (messageInput.value.trim().length < 10) {
+    const validateMessage = () => {
+        const minLength = 10;
+        if (messageInput.value.trim().length < minLength) {
             messageInput.style.borderColor = 'red';
-            status.textContent = 'Message must be at least 10 characters.';
+            status.textContent = `Message must be at least ${minLength} characters.`;
             status.style.color = 'red';
-            return;
+            return false;
         }
+        messageInput.style.borderColor = '';
+        status.textContent = '';
+        return true;
+    };
 
-        // Submit Form to Formspree
-        const data = new FormData(form);
+    // Submit Form to Formspree
+    const submitForm = async (event) => {
+        event.preventDefault();
+
+        // Validate Inputs
+        if (!validateEmail() || !validateMessage()) return;
+
+        const formData = new FormData(form);
         try {
-            const response = await fetch(form.action, {
+            const response = await fetch('https://formspree.io/f/mrbgwgod', {
                 method: 'POST',
-                body: data,
+                body: formData,
                 headers: { 'Accept': 'application/json' },
             });
 
@@ -54,15 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 status.textContent = 'Thank you for your submission!';
                 status.style.color = 'green';
                 form.reset();
-                charCount.textContent = 'Characters left: 200';
+                updateCharCount(); // Reset character count
             } else {
-                const errorData = await response.json().catch(() => ({}));
-                status.textContent = errorData.message || 'Oops! There was a problem submitting the form.';
+                status.textContent = 'Oops! There was a problem submitting the form.';
                 status.style.color = 'red';
             }
         } catch (error) {
-            status.textContent = 'There was a network error. Please try again later.';
+            console.error('Network error:', error);
+            status.textContent = 'Network error. Please try again later.';
             status.style.color = 'red';
         }
-    });
+    };
+
+    // Event Listeners
+    form.addEventListener('submit', submitForm);
 });
