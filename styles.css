@@ -102,7 +102,6 @@ body {
 	text-align: center;
 }
 
-/* --- Ajustes aquí: hover SOLO en el botón, no en el contenedor --- */
 .hero-btn {
 	margin: 3.5rem 0rem 6rem;
 	background: #ab68fc;

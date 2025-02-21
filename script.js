@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Actualizamos el ID del formulario y el de la zona de estado
     const form = document.getElementById('contact-form');
     const toggle = document.getElementById('toggle-btn');
     const emailInput = document.getElementById('email');
@@ -9,17 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const status = document.getElementById('form-status');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Toggle Form Visibility (si es que aún deseas esta funcionalidad)
+    // Toggle de visibilidad del formulario
     const toggleFormVisibility = () => {
         const isHidden = form.style.display === 'none' || form.style.display === '';
         form.style.display = isHidden ? 'grid' : 'none';
         toggle.style.display = isHidden ? 'none' : 'block';
     };
-    if (toggle) {
-        toggle.addEventListener('click', toggleFormVisibility);
-    }
+    toggle.addEventListener('click', toggleFormVisibility);
 
-    // Actualiza el contador de caracteres en el textarea
+    // Actualizar el contador de caracteres en el textarea
     const updateCharCount = () => {
         const maxLength = messageInput.getAttribute('maxlength');
         charCount.textContent = `Characters left: ${maxLength - messageInput.value.length}`;
@@ -55,23 +52,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitForm = async (event) => {
         event.preventDefault();
 
-        // Validamos inputs
+        // Validar inputs
         if (!validateEmail() || !validateMessage()) return;
-        
+
         const formData = new FormData(form);
         try {
-            // Google Forms no permite CORS, por lo que usamos mode 'no-cors'
+            // Debido a que Google Forms no admite CORS, se utiliza 'no-cors'
             await fetch(form.action, {
                 method: 'POST',
                 mode: 'no-cors',
-                body: formData
+                body: formData,
             });
 
-            // Asumimos éxito ya que no se reciben detalles en no-cors
             status.textContent = 'Thank you for your submission!';
             status.style.color = 'green';
             form.reset();
-            updateCharCount(); // Reinicia el contador de caracteres
+            updateCharCount();
         } catch (error) {
             console.error('Network error:', error);
             status.textContent = 'Network error. Please try again later.';
@@ -79,6 +75,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Listener para el envío del formulario
     form.addEventListener('submit', submitForm);
 });
