@@ -122,10 +122,59 @@ body {
 
 .hero-btn-div {
 	display: inline-flex;
-	/* Se elimina el hover transform del contenedor */
-	transition: none; /* opcional, si no deseas transición aquí */
+	transition: none;
 }
-/* --- Fin del ajuste --- */
+
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  padding: 2rem;
+  width: 90%;
+  max-width: 1200px;
+}
+.projects h1 {
+	text-align: center;
+	font-size: 3rem;
+	margin: 1rem 0rem 0.2rem;
+	font-weight: 300;
+}
+
+.projects p {
+	font-size: 1.2rem;
+	line-height: 1.5;
+	color: #fff;
+	font-weight: 300;
+}
+
+.project-iframe-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  border: 2px solid #ba83fc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 8px 2px rgba(171, 104, 252, 0.45);
+  animation: Pulse 1.7s infinite ease-in-out;
+}
+
+/* Styling for the embedded iframe itself */
+.project-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  transition: transform 0.3s ease;
+}
+
+.project-iframe:hover {
+  transform: scale(1.02);
+}
 
 .features {
 	margin: 1rem 5.8rem 10rem;
@@ -530,6 +579,14 @@ body {
 	#contact-form button {
 		width: 100%;
 	}
+}
+
+.google-form {
+	width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 @media (max-width: 480px) {
