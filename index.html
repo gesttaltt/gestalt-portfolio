@@ -36,7 +36,7 @@
 
         <div class="hero">
             <div class="hero-title">
-                <h1>Jonathan Verdun</h1>
+                <h1>Jonathan Verdun's Portfolio</h1>
             </div>
             <div class="hero-subtitle">
                 <p>24 years old passionate computer science student</p>
@@ -48,24 +48,34 @@
             <div class="hero-btn-div">
                 <a class="hero-btn" href="#projects">Live demo</a>
             </div>
+
+            <div class="profile-picture">
+                <a href="https://www.linkedin.com/in/jonathan-verdun/">
+                    <img src="assets/images/pics/1.jpeg">
+                </a>
+            </div>
         </div>
     </header>
 
 
     <main>
-        
+
+        <h1 class="projects-title">Projects</h1>
         <section class="projects" id="projects">
-            <h1>Projects</h1>
-            <p>Check out a live project demo below!</p>
             <div class="project-iframe-container">
                 <iframe 
                     src="https://gestock-orpin.vercel.app" 
-                    frameborder="0" 
+                    frameborder="7" 
                     width="100%" 
                     height="600" 
                     allowfullscreen
                     class="project-iframe">
                 </iframe>
+            </div>
+
+            <div class="project-description">
+                <h2>Inventory and Customer Management Website</h2>
+                <p>A classic small to medium bussiness solution, made with MERN stack aiming for a complete CRM future solution. This project its already deployed and getting updates and improvements to improve and add features.</p>
             </div>
         </section>
 
@@ -79,7 +89,7 @@
                 </div>
                 <div>
                     <img src="assets/images/features/palette.svg" alt="Palette Image">
-                    <h2>Custom Vector Illustrations</h2>
+                    <h2>Illustrations</h2>
                     <p>I will create custom vector illustrations and optimize your website for a seamless experience.</p>
                 </div>
                 <div>
@@ -106,12 +116,11 @@
                 
                 <div class="about-item">
                     <img src="assets/images/grid-items/user-skill-gear.svg" alt="Skillset Image">
-                    <h2>Programming Skillset</h2>
-                    <p>Here are some of the technical skills I'm working on:</p>
+                    <h2>Dev Skillset</h2>
                     <ul>
                         <li><strong class="strong">Front-End:</strong> Vue.js Framework (Also HTML and CSS)</li>
                         <li><strong class="strong">Back-End:</strong> JavaScript, Express Framework and Python (Server-side)</li>
-                        <li><strong class="strong">Databases:</strong> Relational SQL DB</li>
+                        <li><strong class="strong">Databases:</strong> Relational SQL DB and Non-Relational MongoDB</li>
                         <li><strong class="strong">Control Version:</strong> GIT</li>
                     </ul>
                 </div>
@@ -139,15 +148,15 @@
         </section>
 
         <section id="contact" class="contact-section">
-            <div class="contact-grid">
+            <div class="contact-grid arrow-wrapper">
                 <div class="contact-description">
-                    <p>Click the envelope and fill the form to contact me, I'll wait for your feedback and custom page order details</p>
+                    <p id="arrow-start">Click the envelope and fill the form to contact me, I'll wait for your feedback and custom page order details</p>
                     <h2>thanks for your time!</h2>
                 </div>
 
                 <div class="get-started">
-                    <a id="toggle-btn" class="contact-btn">
-                        <img src="assets/images/envelope.svg" alt="Envelope Icon">
+                    <a id="toggle-btn"  class="contact-btn">
+                        <img id="arrow-end" src="assets/images/envelope.svg" alt="Envelope Icon">
                     </a>
 
                     <form id="contact-form" class="form">
@@ -166,6 +175,7 @@
                         </iframe>
                     </form>
                 </div>
+                <svg id="arrow-line"></svg>
             </div>
         </section>
     </main>
