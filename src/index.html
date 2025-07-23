@@ -8,7 +8,7 @@
   <title>Gestalt Studio | Web Development Portfolio</title>
   
   <!-- Favicon -->
-  <link rel="icon" href="./assets/images/logo-clear.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/images/logo-clear.svg" type="image/svg+xml">
   
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="styles-refactored.css">
+  <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
   <!-- Skip Link for Accessibility -->
@@ -25,7 +25,7 @@
   <!-- Navigation -->
   <nav class="navbar" aria-label="Main navigation">
     <a href="/" class="nav-logo-link">
-      <img src="./assets/images/logo-gradient.svg" alt="Gestalt Studio Logo" class="nav-logo">
+      <img src="assets/images/logo-gradient.svg" alt="Gestalt Studio Logo" class="nav-logo">
     </a>
     
     <!-- Mobile menu toggle button will be inserted via JavaScript -->
@@ -75,17 +75,17 @@
         <h2 class="section-title">What We Offer</h2>
         <div class="features-grid">
           <div class="feature-card">
-            <img src="./assets/images/features/palette.svg" alt="Design icon" class="feature-icon">
+            <img src="assets/images/features/palette.svg" alt="Design icon" class="feature-icon">
             <h3 class="feature-title">Intuitive Design</h3>
             <p>We create user interfaces that feel natural and intuitive by applying Gestalt principles of visual perception.</p>
           </div>
           <div class="feature-card">
-            <img src="./assets/images/features/laptop-mobile.svg" alt="Responsive design icon" class="feature-icon">
+            <img src="assets/images/features/laptop-mobile.svg" alt="Responsive design icon" class="feature-icon">
             <h3 class="feature-title">Responsive Development</h3>
             <p>Our websites adapt seamlessly to any device or screen size, providing an optimal experience for all users.</p>
           </div>
           <div class="feature-card">
-            <img src="./assets/images/features/api.svg" alt="API integration icon" class="feature-icon">
+            <img src="assets/images/features/api.svg" alt="API integration icon" class="feature-icon">
             <h3 class="feature-title">API Integration</h3>
             <p>We connect your website to third-party services and data sources to create dynamic, data-driven applications.</p>
           </div>
@@ -98,7 +98,14 @@
       <div class="container">
         <div class="about-content">
           <div class="about-image">
-            <img src="https://via.placeholder.com/600x450/6922d1/ffffff?text=Professional+Portrait" alt="Professional portrait" loading="lazy">
+            <!-- Removed personal image placeholder as requested -->
+            <div class="image-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="10" r="3" />
+                <path d="M12 13c-2.761 0-5 2.239-5 5h10c0-2.761-2.239-5-5-5z" />
+              </svg>
+            </div>
           </div>
           <div class="about-text">
             <h2>My Approach</h2>
@@ -116,7 +123,7 @@
         <h2 class="contact-title">Contact Us</h2>
         
         <button id="toggle-btn" aria-label="Open contact form" aria-expanded="false" aria-controls="contact-form">
-          <img src="./assets/images/envelope.svg" alt="" class="envelope-icon" id="arrow-end">
+          <img src="assets/images/envelope.svg" alt="" class="envelope-icon" id="arrow-end">
         </button>
         
         <!-- SVG Arrow connecting "Get in Touch" button to envelope icon -->
@@ -181,6 +188,6 @@
   </footer>
 
   <!-- JavaScript -->
-  <script src="script-refactored.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
