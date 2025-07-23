@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Create SVG elements once for better performance
       arrowLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      arrowLine.setAttribute("stroke", "#c99cff");
+      arrowLine.setAttribute("stroke", "#a778ff");
       arrowLine.setAttribute("stroke-width", "2.5");
       arrowLine.setAttribute("stroke-dasharray", "400");
       arrowLine.setAttribute("stroke-dashoffset", "400");
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       arrowCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       arrowCircle.setAttribute("r", "5");
-      arrowCircle.setAttribute("fill", "#c99cff");
+      arrowCircle.setAttribute("fill", "#a778ff");
       arrowCircle.style.transform = "scale(0)";
       arrowCircle.style.animation = "popCircle 0.6s ease-out forwards 1s";
       
