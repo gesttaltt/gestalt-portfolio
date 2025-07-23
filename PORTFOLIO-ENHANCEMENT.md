@@ -738,7 +738,7 @@ window.addEventListener('scroll', throttle(() => {
       "image": {
         "@type": "ImageObject",
         "@id": "https://yourwebsite.com/#personimage",
-        "url": "https://yourwebsite.com/assets/images/pics/1.jpeg",
+        "url": "https://yourwebsite.com/assets/images/placeholder.jpg",
         "width": 800,
         "height": 800
       },

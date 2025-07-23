@@ -8,13 +8,13 @@ This document contains detailed analysis and fixes for bugs, bad implementations
 ```html
 <div class="profile-picture">
     <a href="https://www.linkedin.com/in/jonathan-verdun/">
-        <img src="assets/images/pics/1.jpeg"> <!-- Missing alt text -->
+        <img src="assets/images/placeholder.jpg"> <!-- Missing alt text -->
     </a>
 </div>
 ```
 **Fix:** Add a descriptive alt text for accessibility.
 ```html
-<img src="assets/images/pics/1.jpeg" alt="Jonathan Verdun profile photo">
+<img src="assets/images/placeholder.jpg" alt="Profile photo">
 ```
 
 ### 2. Typo in Hero Description
