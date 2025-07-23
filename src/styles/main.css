@@ -279,7 +279,8 @@ img, svg {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: var(--color-bg-alt) url('../assets/images/hero-bg.svg') no-repeat center center;
+  background-color: var(--color-bg-alt);
+  background: var(--color-bg-alt) url('assets/images/hero-bg.svg') no-repeat center center;
   background-size: cover;
   padding: var(--space-xl) 0;
 }
