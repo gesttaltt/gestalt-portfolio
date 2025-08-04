@@ -2,31 +2,722 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="refresh" content="0;url=src/index.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting to Gestalt Portfolio</title>
+  <meta name="description" content="Gestalt Studio - Creating cohesive digital experiences with innovative web development and design">
+  <meta name="keywords" content="web development, design, portfolio, gestalt studio">
+  <title>Gestalt Studio | Web Development Portfolio</title>
+  
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: linear-gradient(45deg, #6922d1, #a778ff);
-      color: white;
-      height: 100vh;
+    /* CSS Variables */
+    :root {
+      --color-primary: #6922d1;
+      --color-primary-light: #a778ff;
+      --color-accent: #e67e22;
+      --color-text: #2c3e50;
+      --color-text-light: #7f8c8d;
+      --color-bg: #ffffff;
+      --color-bg-alt: #f9f9f9;
+      --color-border: #e0e0e0;
+      --font-family: 'Montserrat', sans-serif;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+
+    /* Reset and Base Styles */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      line-height: 1.6;
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Navigation */
+    .navbar {
+      background: var(--color-bg);
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      box-shadow: var(--box-shadow);
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .nav-logo {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-text);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--color-primary);
+    }
+
+    /* Skip link for accessibility */
+    .skip-to-content {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--color-primary);
+      color: white;
+      padding: 8px;
+      text-decoration: none;
+      border-radius: 4px;
+      z-index: 1000;
+    }
+
+    .skip-to-content:focus {
+      top: 6px;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+      color: white;
+      padding: 120px 0 80px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
       justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--color-accent);
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: var(--border-radius);
+      font-weight: 500;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #d35400;
+      transform: translateY(-2px);
+    }
+
+    .hero-btn {
+      background: transparent;
+      border: 2px solid white;
+    }
+
+    .hero-btn:hover {
+      background: white;
+      color: var(--color-primary);
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--color-text);
+    }
+
+    /* Projects Section */
+    .projects {
+      background: var(--color-bg-alt);
+    }
+
+    .project-iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+
+    /* Features Section */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+    }
+
+    /* About Section */
+    .about {
+      background: var(--color-bg-alt);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
       align-items: center;
     }
-    a {
+
+    .about-image {
+      text-align: center;
+    }
+
+    .image-placeholder {
+      width: 300px;
+      height: 300px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
       color: white;
-      text-decoration: underline;
+    }
+
+    .image-placeholder svg {
+      width: 120px;
+      height: 120px;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-primary);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    /* Contact Section */
+    .contact {
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: var(--color-primary);
+    }
+
+    #toggle-btn {
+      background: var(--color-primary);
+      border: none;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      cursor: pointer;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem auto;
+    }
+
+    #toggle-btn:hover {
+      transform: scale(1.1);
+      background: var(--color-primary-light);
+    }
+
+    .envelope-icon {
+      width: 40px;
+      height: 40px;
+      filter: brightness(0) invert(1);
+    }
+
+    #contact-form {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      display: none;
+    }
+
+    #contact-form.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--color-text);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--color-border);
+      border-radius: var(--border-radius);
+      font-family: var(--font-family);
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-primary);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .char-counter {
+      font-size: 0.9rem;
+      color: var(--color-text-light);
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    #form-status {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: var(--border-radius);
+      display: none;
+    }
+
+    #form-status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    #form-status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--color-text);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      color: white;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--color-primary-light);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Gestalt Studio</h1>
-  <p>Redirecting to portfolio... If you are not redirected automatically, <a href="src/index.html">click here</a>.</p>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main" class="skip-to-content">Skip to main content</a>
+  
+  <!-- Navigation -->
+  <nav class="navbar" aria-label="Main navigation">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'%3E%3Ctext x='10' y='25' font-family='Montserrat' font-size='16' font-weight='bold' fill='%236922d1'%3EGestalt%3C/text%3E%3C/svg%3E" alt="Gestalt Studio Logo" class="nav-logo">
+    
+    <div class="nav-links" id="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main id="main" tabindex="-1">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Transforming Ideas into Digital Experiences</h1>
+          <p class="hero-subtitle">Creating cohesive and intuitive interfaces with the power of Gestalt principles.</p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="#contact" class="btn hero-btn">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Project</h2>
+        <iframe 
+          src="about:blank" 
+          title="Project Preview" 
+          class="project-iframe" 
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title">What We Offer</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#6922d1" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+            </svg>
+            <h3 class="feature-title">Intuitive Design</h3>
+            <p>We create user interfaces that feel natural and intuitive by applying Gestalt principles of visual perception.</p>
+          </div>
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#6922d1" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <h3 class="feature-title">Responsive Development</h3>
+            <p>Our websites adapt seamlessly to any device or screen size, providing an optimal experience for all users.</p>
+          </div>
+          <div class="feature-card">
+            <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="#6922d1" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+            <h3 class="feature-title">API Integration</h3>
+            <p>We connect your website to third-party services and data sources to create dynamic, data-driven applications.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-image">
+            <div class="image-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="10" r="3" />
+                <path d="M12 13c-2.761 0-5 2.239-5 5h10c0-2.761-2.239-5-5-5z" />
+              </svg>
+            </div>
+          </div>
+          <div class="about-text">
+            <h2>My Approach</h2>
+            <p>At Gestalt Studio, I believe that the whole is greater than the sum of its parts. My design philosophy is rooted in the Gestalt principles of visual perception, which guide how I organize elements to create cohesive and intuitive user experiences.</p>
+            <p>As a computer science engineering student passionate about web development, I focus on creating digital products that not only look beautiful but also function seamlessly, providing users with a natural and engaging experience.</p>
+            <a href="#contact" class="btn" id="arrow-start">Get in Touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="contact-title">Contact Us</h2>
+        
+        <button id="toggle-btn" aria-label="Open contact form" aria-expanded="false" aria-controls="contact-form">
+          <svg class="envelope-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </button>
+        
+        <form 
+          id="contact-form" 
+          action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfSswGRX8IOhHU_XCsCuFFSXNuYYZ9CN7MrqiCwGPgcWEBtHg/formResponse" 
+          method="POST"
+          aria-labelledby="contact-title">
+          
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="entry.1222577764" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="entry.1046955471" required>
+            <span id="email-error" class="error-message"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="entry.1023622312" maxlength="400" required></textarea>
+            <div id="char-count" class="char-counter">Characters left: 400</div>
+          </div>
+          
+          <div class="form-group">
+            <div id="form-status" aria-live="polite"></div>
+            <div class="form-submit">
+              <button type="submit" class="btn">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Gestalt Studio. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+        <a href="https://linkedin.com/" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Portfolio JavaScript - Minimal but functional
+    document.addEventListener('DOMContentLoaded', () => {
+      // Form handling
+      const form = document.getElementById('contact-form');
+      const toggle = document.getElementById('toggle-btn');
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('email-error');
+      const messageInput = document.getElementById('message');
+      const charCount = document.getElementById('char-count');
+      const status = document.getElementById('form-status');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Toggle contact form
+      toggle.addEventListener('click', () => {
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', !isExpanded);
+        form.classList.toggle('show');
+      });
+
+      // Email validation
+      emailInput.addEventListener('blur', () => {
+        if (emailInput.value && !emailRegex.test(emailInput.value)) {
+          emailError.textContent = 'Please enter a valid email address.';
+          emailInput.style.borderColor = '#e74c3c';
+        } else {
+          emailError.textContent = '';
+          emailInput.style.borderColor = '';
+        }
+      });
+
+      // Character counter for message
+      messageInput.addEventListener('input', () => {
+        const remaining = 400 - messageInput.value.length;
+        charCount.textContent = `Characters left: ${remaining}`;
+        charCount.style.color = remaining < 50 ? '#e74c3c' : '';
+      });
+
+      // Form submission
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Validate email before submission
+        if (!emailRegex.test(emailInput.value)) {
+          showStatus('Please enter a valid email address.', 'error');
+          return;
+        }
+
+        // Show loading
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData
+          });
+
+          if (response.ok) {
+            showStatus('Thank you! Your message has been sent successfully.', 'success');
+            form.reset();
+            charCount.textContent = 'Characters left: 400';
+          } else {
+            throw new Error('Network response was not ok');
+          }
+        } catch (error) {
+          showStatus('Sorry, there was an error sending your message. Please try again.', 'error');
+        } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      });
+
+      function showStatus(message, type) {
+        status.textContent = message;
+        status.className = type;
+        status.style.display = 'block';
+        setTimeout(() => {
+          status.style.display = 'none';
+        }, 5000);
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Simple mobile menu toggle (if needed)
+      const navLinks = document.getElementById('nav-links');
+      if (window.innerWidth <= 768) {
+        // Add mobile menu functionality if needed
+        console.log('Mobile view detected');
+      }
+    });
+  </script>
 </body>
 </html>
